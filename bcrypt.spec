@@ -4,7 +4,7 @@
 #
 Name     : bcrypt
 Version  : 2.0.0
-Release  : 3
+Release  : 4
 URL      : https://pypi.python.org/packages/source/b/bcrypt/bcrypt-2.0.0.tar.gz
 Source0  : https://pypi.python.org/packages/source/b/bcrypt/bcrypt-2.0.0.tar.gz
 Summary  : Modern password hashing for your software and your servers
@@ -49,7 +49,6 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-python2 setup.py test
 %install
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
