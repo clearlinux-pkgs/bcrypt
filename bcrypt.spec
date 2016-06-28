@@ -4,7 +4,7 @@
 #
 Name     : bcrypt
 Version  : 2.0.0
-Release  : 7
+Release  : 8
 URL      : https://pypi.python.org/packages/source/b/bcrypt/bcrypt-2.0.0.tar.gz
 Source0  : https://pypi.python.org/packages/source/b/bcrypt/bcrypt-2.0.0.tar.gz
 Summary  : Modern password hashing for your software and your servers
