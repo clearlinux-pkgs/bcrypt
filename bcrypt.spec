@@ -4,7 +4,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.1
-Release  : 11
+Release  : 12
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.1.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.1.tar.gz
 Summary  : Modern password hashing for your software and your servers
