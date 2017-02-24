@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : bcrypt
-Version  : 3.1.2
-Release  : 16
-URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz
-Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz
-Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz.asc
+Version  : 3.1.3
+Release  : 17
+URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
+Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
+Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz.asc
 Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
@@ -46,11 +46,11 @@ python components for the bcrypt package.
 
 
 %prep
-%setup -q -n bcrypt-3.1.2
+%setup -q -n bcrypt-3.1.3
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1487946420
+export SOURCE_DATE_EPOCH=1487946735
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -60,7 +60,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1487946420
+export SOURCE_DATE_EPOCH=1487946735
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
