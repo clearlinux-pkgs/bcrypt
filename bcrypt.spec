@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.2
-Release  : 15
+Release  : 16
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.2.tar.gz.asc
@@ -14,20 +14,19 @@ Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: bcrypt-python
+Requires: cffi
+Requires: pytest
+Requires: six
 BuildRequires : cffi
 BuildRequires : cffi-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
-BuildRequires : pycparser
-BuildRequires : pycparser-python
 BuildRequires : pytest
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
-BuildRequires : six
-BuildRequires : six-python
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -41,8 +40,6 @@ bcrypt
 %package python
 Summary: python components for the bcrypt package.
 Group: Default
-Requires: cffi-python
-Requires: six-python
 
 %description python
 python components for the bcrypt package.
@@ -53,7 +50,7 @@ python components for the bcrypt package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1487183059
+export SOURCE_DATE_EPOCH=1487946420
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -63,7 +60,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1487183059
+export SOURCE_DATE_EPOCH=1487946420
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
