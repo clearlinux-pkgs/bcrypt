@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.3
-Release  : 17
+Release  : 18
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz.asc
