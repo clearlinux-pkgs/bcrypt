@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.3
-Release  : 18
+Release  : 19
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz.asc
@@ -17,8 +17,6 @@ Requires: bcrypt-python
 Requires: cffi
 Requires: pytest
 Requires: six
-BuildRequires : cffi
-BuildRequires : cffi-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
@@ -31,11 +29,7 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-bcrypt
 ======
-.. image:: https://img.shields.io/pypi/v/bcrypt.svg
-:target: https://pypi.python.org/pypi/bcrypt/
-:alt: Latest Version
 
 %package python
 Summary: python components for the bcrypt package.
@@ -49,8 +43,11 @@ python components for the bcrypt package.
 %setup -q -n bcrypt-3.1.3
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1487946735
+export SOURCE_DATE_EPOCH=1503072599
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -58,16 +55,20 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test
+PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1487946735
+export SOURCE_DATE_EPOCH=1503072599
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
