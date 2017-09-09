@@ -6,13 +6,14 @@
 #
 Name     : bcrypt
 Version  : 3.1.3
-Release  : 19
+Release  : 20
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.3.tar.gz.asc
 Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
+Requires: bcrypt-legacypython
 Requires: bcrypt-python
 Requires: cffi
 Requires: pytest
@@ -31,9 +32,18 @@ BuildRequires : virtualenv
 %description
 ======
 
+%package legacypython
+Summary: legacypython components for the bcrypt package.
+Group: Default
+
+%description legacypython
+legacypython components for the bcrypt package.
+
+
 %package python
 Summary: python components for the bcrypt package.
 Group: Default
+Requires: bcrypt-legacypython
 
 %description python
 python components for the bcrypt package.
@@ -47,7 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503072599
+export SOURCE_DATE_EPOCH=1504998374
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -57,7 +67,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test
 %install
-export SOURCE_DATE_EPOCH=1503072599
+export SOURCE_DATE_EPOCH=1504998374
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -68,7 +78,10 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
