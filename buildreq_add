@@ -3,3 +3,5 @@
 pytest
 pycparser-legacypython
 pytest-legacypython
+setuptools-legacypython
+cffi-legacypython
