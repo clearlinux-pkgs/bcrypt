@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.4
-Release  : 34
+Release  : 35
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz.asc
@@ -17,32 +17,19 @@ Requires: bcrypt-python3
 Requires: bcrypt-python
 Requires: cffi
 Requires: six
-BuildRequires : cffi-legacypython
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
-BuildRequires : pycparser-legacypython
 BuildRequires : pytest
-BuildRequires : pytest-legacypython
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
-BuildRequires : setuptools-legacypython
 BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
 ======
-
-%package legacypython
-Summary: legacypython components for the bcrypt package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the bcrypt package.
-
 
 %package python
 Summary: python components for the bcrypt package.
@@ -70,8 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528560391
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1528755186
 python3 setup.py build -b py3
 
 %check
@@ -80,20 +66,14 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test || :
 %install
-export SOURCE_DATE_EPOCH=1528560391
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
