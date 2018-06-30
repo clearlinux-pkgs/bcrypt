@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.4
-Release  : 40
+Release  : 41
 URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
 Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
 Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz.asc
@@ -65,14 +65,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1529092491
+export SOURCE_DATE_EPOCH=1530388994
 python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test || :
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/bcrypt
