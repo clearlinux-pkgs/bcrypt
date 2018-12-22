@@ -5,26 +5,24 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : bcrypt
-Version  : 3.1.4
-Release  : 44
-URL      : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
-Source0  : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz
-Source99 : http://pypi.debian.net/bcrypt/bcrypt-3.1.4.tar.gz.asc
+Version  : 3.1.5
+Release  : 45
+URL      : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz
+Source0  : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz
+Source99 : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz.asc
 Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: bcrypt-python3
-Requires: bcrypt-license
-Requires: bcrypt-python
+Requires: bcrypt-license = %{version}-%{release}
+Requires: bcrypt-python = %{version}-%{release}
+Requires: bcrypt-python3 = %{version}-%{release}
 Requires: cffi
 Requires: six
-BuildRequires : pbr
-BuildRequires : pip
+BuildRequires : buildreq-distutils3
+BuildRequires : cffi
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : python3-dev
-BuildRequires : setuptools
 BuildRequires : tox
 BuildRequires : virtualenv
 
@@ -42,7 +40,7 @@ license components for the bcrypt package.
 %package python
 Summary: python components for the bcrypt package.
 Group: Default
-Requires: bcrypt-python3
+Requires: bcrypt-python3 = %{version}-%{release}
 
 %description python
 python components for the bcrypt package.
@@ -58,15 +56,16 @@ python3 components for the bcrypt package.
 
 
 %prep
-%setup -q -n bcrypt-3.1.4
+%setup -q -n bcrypt-3.1.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530388994
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1545510331
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %check
 export http_proxy=http://127.0.0.1:9/
@@ -75,9 +74,9 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/bcrypt
-cp LICENSE %{buildroot}/usr/share/doc/bcrypt/LICENSE
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/bcrypt
+cp LICENSE %{buildroot}/usr/share/package-licenses/bcrypt/LICENSE
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -86,8 +85,8 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/bcrypt/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/bcrypt/LICENSE
 
 %files python
 %defattr(-,root,root,-)
