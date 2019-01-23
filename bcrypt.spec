@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : bcrypt
-Version  : 3.1.5
-Release  : 46
-URL      : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz
-Source0  : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz
-Source99 : https://files.pythonhosted.org/packages/91/a5/fd19eac0252e56b4ce65ced937ae40024782c21108da7d830003b7f76cdb/bcrypt-3.1.5.tar.gz.asc
+Version  : 3.1.6
+Release  : 47
+URL      : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz
+Source0  : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz
+Source99 : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz.asc
 Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
@@ -19,7 +19,6 @@ Requires: bcrypt-python3 = %{version}-%{release}
 Requires: cffi
 Requires: six
 BuildRequires : buildreq-distutils3
-BuildRequires : cffi
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
@@ -27,7 +26,11 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+bcrypt
 ======
+.. image:: https://img.shields.io/pypi/v/bcrypt.svg
+:target: https://pypi.org/project/bcrypt/
+:alt: Latest Version
 
 %package license
 Summary: license components for the bcrypt package.
@@ -56,14 +59,14 @@ python3 components for the bcrypt package.
 
 
 %prep
-%setup -q -n bcrypt-3.1.5
+%setup -q -n bcrypt-3.1.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545510331
+export SOURCE_DATE_EPOCH=1548205374
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
