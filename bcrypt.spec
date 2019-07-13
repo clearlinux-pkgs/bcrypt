@@ -6,7 +6,7 @@
 #
 Name     : bcrypt
 Version  : 3.1.6
-Release  : 48
+Release  : 49
 URL      : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz
 Source99 : https://files.pythonhosted.org/packages/ce/3a/3d540b9f5ee8d92ce757eebacf167b9deedb8e30aedec69a2a072b2399bb/bcrypt-3.1.6.tar.gz.asc
@@ -19,18 +19,16 @@ Requires: bcrypt-python3 = %{version}-%{release}
 Requires: cffi
 Requires: six
 BuildRequires : buildreq-distutils3
+BuildRequires : cffi
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
+BuildRequires : six
 BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-bcrypt
 ======
-.. image:: https://img.shields.io/pypi/v/bcrypt.svg
-:target: https://pypi.org/project/bcrypt/
-:alt: Latest Version
 
 %package license
 Summary: license components for the bcrypt package.
@@ -65,8 +63,13 @@ python3 components for the bcrypt package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1548205374
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562983729
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -76,6 +79,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bcrypt
 cp LICENSE %{buildroot}/usr/share/package-licenses/bcrypt/LICENSE
