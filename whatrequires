@@ -1,5 +1,8 @@
 # This file contains recursive sources that require this package
 Django
+ceph
 conda
 home-assistant
+keystone
+mercurial
 paramiko
