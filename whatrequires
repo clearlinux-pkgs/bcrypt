@@ -6,3 +6,4 @@ home-assistant
 keystone
 mercurial
 paramiko
+passlib
