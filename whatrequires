@@ -3,7 +3,5 @@ Django
 ceph
 conda
 home-assistant
-keystone
 mercurial
 paramiko
-passlib
