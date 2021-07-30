@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x235AE5F129F9ED98 (paul.l.kehrer@gmail.com)
 #
 Name     : bcrypt
-Version  : 3.1.7
-Release  : 67
-URL      : https://files.pythonhosted.org/packages/fa/aa/025a3ab62469b5167bc397837c9ffc486c42a97ef12ceaa6699d8f5a5416/bcrypt-3.1.7.tar.gz
-Source0  : https://files.pythonhosted.org/packages/fa/aa/025a3ab62469b5167bc397837c9ffc486c42a97ef12ceaa6699d8f5a5416/bcrypt-3.1.7.tar.gz
-Source1  : https://files.pythonhosted.org/packages/fa/aa/025a3ab62469b5167bc397837c9ffc486c42a97ef12ceaa6699d8f5a5416/bcrypt-3.1.7.tar.gz.asc
+Version  : 3.2.0
+Release  : 68
+URL      : https://files.pythonhosted.org/packages/d8/ba/21c475ead997ee21502d30f76fd93ad8d5858d19a3fad7cd153de698c4dd/bcrypt-3.2.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/d8/ba/21c475ead997ee21502d30f76fd93ad8d5858d19a3fad7cd153de698c4dd/bcrypt-3.2.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/d8/ba/21c475ead997ee21502d30f76fd93ad8d5858d19a3fad7cd153de698c4dd/bcrypt-3.2.0.tar.gz.asc
 Summary  : Modern password hashing for your software and your servers
 Group    : Development/Tools
 License  : Apache-2.0
@@ -17,9 +17,11 @@ Requires: bcrypt-license = %{version}-%{release}
 Requires: bcrypt-python = %{version}-%{release}
 Requires: bcrypt-python3 = %{version}-%{release}
 Requires: cffi
+Requires: mypy
 Requires: six
 BuildRequires : buildreq-distutils3
 BuildRequires : cffi
+BuildRequires : mypy
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
@@ -60,15 +62,15 @@ python3 components for the bcrypt package.
 
 
 %prep
-%setup -q -n bcrypt-3.1.7
-cd %{_builddir}/bcrypt-3.1.7
+%setup -q -n bcrypt-3.2.0
+cd %{_builddir}/bcrypt-3.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603387965
+export SOURCE_DATE_EPOCH=1627686715
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -86,7 +88,7 @@ PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python set
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bcrypt
-cp %{_builddir}/bcrypt-3.1.7/LICENSE %{buildroot}/usr/share/package-licenses/bcrypt/5feaf15b3fa7d2d226d811e5fcd49098a1ea520c
+cp %{_builddir}/bcrypt-3.2.0/LICENSE %{buildroot}/usr/share/package-licenses/bcrypt/5feaf15b3fa7d2d226d811e5fcd49098a1ea520c
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
